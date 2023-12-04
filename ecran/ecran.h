@@ -60,16 +60,13 @@ class Ecran{
          *                                  LCD_LIGNE_2
          */
         void Afficher_Message(const String message, int ligneLCD);
+
         /**
-         * @brief Défiler un message sur l'écran
-         * 
-         * @param stringPourAfficher    Message pour afficher
-         * @param ligneLCD              Ligne sur laquelle le message est affiché
-         *                              Peut être un des valeur suivant :
-         *                                  LCD_LIGNE_1
-         *                                  LCD_LIGNE_2
+         * @brief Lancer l'horloge
+         * @param TempsAttente          Temps pour attendre en miliseconde
          */
-        void Defiler_Message(const String message, int ligneLCD);
+
+        void Lancer_horloge(int TempsAttente);
 };
 
 #endif

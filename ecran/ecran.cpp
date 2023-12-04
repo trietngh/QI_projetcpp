@@ -12,7 +12,6 @@
 /*-----------Include-------------*/
 #include "ecran.h"
 #include <string>
-
 using namespace std;
 
 /*-----------Private Constants----------*/
@@ -39,10 +38,13 @@ using namespace std;
 #define LCD_COLONNE_15 14
 #define LCD_COLONNE_16 15
 
+#define LCD_NB_LIGNE 2
+#define LCD_NB_COLONNE 16
+
 /*-----------Class Ecran Functions Definition----------*/
 Ecran::Ecran(){
     /* Configurer le nombre de lignes et de colonnes du LCD*/
-    lcd.begin(16, 2);
+    lcd.begin(LCD_NB_COLONNE, LCD_NB_LIGNE);
     
     /* Configure le couleur du fond d'écran */
     lcd.setRGB(COULEUR_ROUGE, COULEUR_VERTE, COULEUR_BLEU); /* Ici fond d'écran en blanc*/
@@ -51,16 +53,35 @@ Ecran::Ecran(){
 }
 
 void Ecran::Afficher_Message(const String message, int ligneLCD){
-    lcd.setCursor(ligneLCD, LCD_COLONNE_1);
-    lcd.print(message);
+    
+    int nb_deplacement = message.length() - LCD_NB_COLONNE;
+    int avance = 0;
+
+    if (nb_deplacement > 0)
+    {
+        for(int i = 0; i < nb_deplacement; i++)
+        {
+            lcd.setCursor(LCD_COLONNE_1, ligneLCD);
+            for (int iter = avance; iter < (message.length() - nb_deplacement + avance); iter++) {
+                lcd.print(message[iter]);
+            }
+            avance++;
+            delay(1000);
+        }
+    }
+    else
+    {
+        lcd.setCursor(LCD_COLONNE_1, ligneLCD);
+        lcd.print(message);
+    }
+
 }
 
-void Ecran::Defiler_Message(const String message, int ligneLCD){
-    lcd.setCursor(ligneLCD, LCD_COLONNE_1);
-    /* Défiler */
-    for (int iter = 0; iter < stringPourAfficher.length(); iter++) {
-        lcd.print(message.substr(iter, iter+16));
-        delay(500);
+void Ecran::Lancer_horloge(int TempsAttente){
+    int TempsRestant = TempsAttente/1000;
+    for(int i = 0; i < TempsAttente/1000; i++){
+        Ecran::Afficher_Message(String(TempsRestant),2);
+        delay(1000);
+        TempsRestant--;
     }
-    
 }

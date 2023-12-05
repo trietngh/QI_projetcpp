@@ -1,27 +1,18 @@
-#include <Servo.h>
+#include "Driver_servo_motor.h"
 
-Servo myservo; 
+#define vitesse_marchee_servo_1 1613
+#define vitesse_marchee_servo_2 1607
+#define vitesse_arretee_servo_1 1500
+#define vitesse_arretee_servo_2 1480
 
-int pos = 0;
+
+Servomotor myservo1(D8,vitesse_marchee_servo_2,vitesse_arretee_servo_2); 
+
 
 void setup() {
-  // The servo control wire is connected to Arduino D2 pin.
-  myservo.attach(15);
-  // Servo is stationary.
-  myservo.write(1);
 }
 
 void loop() {
-  // Servo spins forward at full speed for 1 second.
-  myservo.write(180);
-  delay(500);
-  // Servo is stationary for 1 second.
-  myservo.write(90);
-  delay(500);
-  // Servo spins in reverse at full speed for 1 second.
-  myservo.write(0);
-  delay(500);
-  // Servo is stationary for 1 second.
-  myservo.write(90);
-  delay(500);
+  myservo1.Tourner_Angle_60_deg();
+
 }

@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 #include <Servo.h>
+#include "Driver_Palette_Commande.h"
+#include "Driver_ecran.h"
 
 
 #define vitesse_marchee_servo_1 1613
@@ -24,8 +26,8 @@ class Servomotor{
     public:
     Servomotor(int pin_servomotor, int v_marchee, int v_arretee);
     void Tourner_Angle_60_deg(void);
-    void Calibrer_Vitesse_Marchee(void);
-    void Calibrer_Vitesse_Arretee(void);
+    void Calibrer_Vitesse_Marchee(Ecran ecran, Palette_Commande palette);
+    void Calibrer_Vitesse_Arretee(Ecran ecran, Palette_Commande palette);
     int Get_Vitesse_Arretee(void);
     int Get_Vitesse_Marchee(void);
     int Get_Pin_Servo(void);

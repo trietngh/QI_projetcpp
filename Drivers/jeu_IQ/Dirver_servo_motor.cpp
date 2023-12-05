@@ -1,5 +1,6 @@
 #include "Driver_servo_motor.h"
 
+
 #define GPIO_D4 2
 #define GPIO_D5 14
 #define GPIO_D6 12
@@ -52,9 +53,11 @@ void Servomotor::Tourner_Angle_60_deg(){
     delay(temps_attent);
 }
 
-void Servomotor::Calibrer_Vitesse_Marchee()
+void Servomotor::Calibrer_Vitesse_Marchee(Ecran ecran, Palette_Commande palette)
 {
     char commande = 'F';
+
+    ecran.Afficher_Message("Appuyez A : v++ B : v-- C : fini",1);
 
     //Calibrage en cours
     //Appuyer C pour terminer le calibrage
@@ -68,21 +71,29 @@ void Servomotor::Calibrer_Vitesse_Marchee()
         delay(temps_attent);
 
         //Attendre le calibrage
+        //Recevoir le commande
+        commande = palette.Recevoir_Reponse(1000);
+
         //Appuyer A pour augmenter la vitesse
-        if(commande == 'A'){ // à compléter
+        if(commande == 'A'){ 
             vitesse_marchee++;
         }
         //Appuyer B pour diminuer la vitesse
-        else if(commande == 'B') // à compléter
+        else if(commande == 'B') 
         {
             vitesse_marchee--;
         }
+
+        ecran.Afficher_Message("Vitesse marchee : "+ vitesse_marchee,2);
+       
     }
 }
 
-void Servomotor::Calibrer_Vitesse_Arretee()
+void Servomotor::Calibrer_Vitesse_Arretee(Ecran ecran, Palette_Commande palette)
 {
     char commande = 'F';
+
+    ecran.Afficher_Message("Appuyez A : v++ B : v-- C : fini",1);
 
     //Calibrage en cours
     //Appuyer C pour terminer le calibrage
@@ -91,6 +102,10 @@ void Servomotor::Calibrer_Vitesse_Arretee()
         //Arreter le servo
         myservo.writeMicroseconds(vitesse_arretee);
         delay(temps_attent);
+
+        //Attendre le calibrage
+        //Recevoir le commande
+        commande = palette.Recevoir_Reponse(1000);
 
         //Appuyer A pour augmenter la vitesse
         if(commande == 'A'){ // à compléter
@@ -102,6 +117,8 @@ void Servomotor::Calibrer_Vitesse_Arretee()
         {
             vitesse_arretee--;
         }
+        ecran.Afficher_Message("Vitesse arretee : "+ vitesse_arretee,2);
+
     }
 }
 

@@ -10,8 +10,7 @@
  */
 
 /*-----------Include-------------*/
-#include "ecran.h"
-#include <string>
+#include "Driver_ecran.h"
 using namespace std;
 
 /*-----------Private Constants----------*/
@@ -62,7 +61,7 @@ void Ecran::Afficher_Message(const String message, int ligneLCD){
         for(int i = 0; i < nb_deplacement; i++)
         {
             lcd.setCursor(LCD_COLONNE_1, ligneLCD);
-            for (int iter = avance; iter < (message.length() - nb_deplacement + avance); iter++) {
+            for (int iter = avance; iter < int(message.length() - nb_deplacement + avance); iter++) {
                 lcd.print(message[iter]);
             }
             avance++;

@@ -14,7 +14,6 @@
 
 /*-----------Include-------------*/
 #include "rgb_lcd.h"
-#include <string>
 
 using namespace std;
 

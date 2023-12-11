@@ -1,5 +1,19 @@
+/**
+ * @file Driver_Application_IQ.cpp
+ * @author Huong Cam TANG (hctang@insa-toulouse.fr)
+ * @brief Driver pour gérer l'application de jeu IQ
+ * @version 0.1
+ * @date 2023-12-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
+/*-----------Include-------------*/
 #include "Driver_Application_IQ.h"
 
+
+/*-----------Private Constants----------*/
 #define MESSAGE_WELCOME "     Welcome    "
 #define MESSAGE_ACCEUIL_DEMARRAGE "A: Demarrer jeu"
 #define MESSAGE_ACCEUIL_REGLAGE "B: Regler jeu"
@@ -45,6 +59,8 @@
 #define MODE_REGLAGE 3
 #define MODE_ACCEUIL 1
 #define MODE_VERI_PERIF 0
+
+/*-----------Class ApplicationIQ Functions Definition----------*/
 
 ApplicationIQ::ApplicationIQ(){
     mode_app = MODE_ACCEUIL;
@@ -227,7 +243,7 @@ void ApplicationIQ::Lancement_Jeu(void){
 
         if(reponse_question_courant == palette_jeu.Recevoir_Reponse(TEMPS_REPONSE)){
             Envoyer_Cadeau();
-            haut_parleur_jeu.Mettre_felication();            
+            haut_parleur_jeu.Mettre_felicitation();            
 
         }
         else
@@ -265,11 +281,6 @@ void ApplicationIQ::Lancement_Jeu(void){
 
 void ApplicationIQ::Roulement_Application()
 {
-    /*if(mode_app == MODE_ACCEUIL)
-    {
-        Verifier_Perif_Jeu();
-    }*/
-
     if(mode_app == MODE_ACCEUIL)
     {
         Acceuil_Jeu();

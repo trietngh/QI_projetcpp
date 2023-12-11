@@ -1,8 +1,45 @@
+/**
+ * @file Driver_Liste_Questions.cpp
+ * @author TANG Huong Cam (hctang@insa-toulouse.fr)
+ * @brief Driver pour gérer la liste des questions de jeu IQ
+ * @version 0.1
+ * @date 2023-12-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+/*-----------Include-------------*/
+
 #include "Driver_Liste_Questions.h"
 #include <time.h> 
 
+/*-----------Private Constants----------*/
+
 #define NB_QUESTIONS 21 // lien avec le constructeur liste_questions
 int tableau_questions_posees[6] = {-1};
+
+
+/**
+ * @brief Vérifier si la question était posée
+ * 
+ * @param no_question 
+ * @return true 
+ * @return false 
+ */
+bool Verifier_questions_posee(int no_question){
+    for (auto i:tableau_questions_posees)
+    {
+        if(no_question == tableau_questions_posees[i])
+        {
+            return true;
+        }
+    }
+    return false;
+    
+}
+
+
+/*-----------Class Liste_questions Functions Definition----------*/
 
 Liste_questions::Liste_questions(){    
     liste_des_question[0] = 'A';
@@ -26,18 +63,6 @@ Liste_questions::Liste_questions(){
     liste_des_question[18] = 'B';
     liste_des_question[19] = 'B';
     liste_des_question[20] = 'A';
-}
-
-bool Verifier_questions_posee(int no_question){
-    for (auto i:tableau_questions_posees)
-    {
-        if(no_question == tableau_questions_posees[i])
-        {
-            return true;
-        }
-    }
-    return false;
-    
 }
 
 

@@ -1,4 +1,19 @@
+
+/**
+ * @file Driver_servo_motor.cpp
+ * @author TANG Huong Cam (hctang@insa-toulouse.fr)
+ * @brief Driver pour gérer le servomotor
+ * @version 0.1
+ * @date 2023-12-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
+/*-----------Include-------------*/
 #include "Driver_servo_motor.h"
+
+/*-----------Private Constants----------*/
 
 #define GPIO_D3 0
 #define GPIO_D4 2
@@ -10,6 +25,9 @@
 #define temps_60_deg 200
 #define temps_attent 1000
 #define temps_1_deg 20
+
+
+/*-----------Class Servomotor Functions Definition----------*/
 
 void Servomotor::Set_Up_Servo(int pin_servomotor, int no_servo)
 {

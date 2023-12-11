@@ -1,5 +1,5 @@
 /**
- * @file ecran.h
+ * @file Driver_ecran.h
  * @author Triet NGUYEN (tr_nguye@insa-toulouse.fr)
  * @brief Header du Driver pour gérer l'écran LCD de la machine QI
  * @version 0.1
@@ -64,6 +64,11 @@ class Ecran{
          */
         void Afficher_Message(const String message, int ligneLCD);
 
+        /**
+         * @brief Effacer l'écran
+         * 
+         * @param None
+         */
         void Effacer_Ecran(void);
 
 };

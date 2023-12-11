@@ -1,7 +1,22 @@
+/**
+ * @file Driver_Palette_Commande.cpp
+ * @author TANG Huong Cam (hctang@insa-toulouse.fr)
+ * @brief Driver pour gérer la palette de commande de jeu IQ
+ * @version 0.1
+ * @date 2023-12-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
+/*-----------Include-------------*/
 #include "Driver_Palette_Commande.h"
+
+/*-----------Private Constants----------*/
 
 #define TEMPS_ATTENTE_REPONSE 3000
 
+/*-----------Class Palette_Commande Functions Definition----------*/
 
 Palette_Commande::Palette_Commande(){
         pinMode(buttonPinA, INPUT);

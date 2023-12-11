@@ -3,12 +3,13 @@
  * @author TANG Huong Cam (hctang@insa-toulouse.fr)
  * @brief Header du Driver pour gérer l'application de jeu IQ
  * @version 0.1
- * @date 2023-12-09
+ * @date 2023-12-11
  * 
  * @copyright Copyright (c) 2023
  * 
  */
 
+/*-----------Include-------------*/
 #ifndef Driver_AppplicationIQ_h
 #define Driver_AppplicationIQ_h
 
@@ -19,9 +20,13 @@
 #include "Driver_Liste_Questions.h"
 #include "Driver_Haut_Parleur.h"
 
+/*-----------Exported Class----------*/
+
 class ApplicationIQ
 {
 private:
+
+    /*-----------Private Class ApplicationIQ Attributs Declaration----------*/
     int mode_app;
     Liste_questions liste_questions_jeu;
     Palette_Commande palette_jeu;
@@ -30,25 +35,82 @@ private:
     Servomotor servo_punition;
     Ecran ecran_jeu;
 
-    void Calibrer_Servo(Servomotor myservo);//done
-    void Demande_Remplissage(void); // done
+    /*-----------Private Class ApplicationIQ Functions Definition----------*/
 
-    bool Quitter_Jeu (void); //done 
+    /**
+     * @brief Calibrer la position de servo
+     * 
+     * @param myservo 
+     */
+    void Calibrer_Servo(Servomotor myservo);
 
-    void Acceuil_Jeu(void); // done
-    void Lancement_Jeu(void); // done
-    void Reglage_Servo_Jeu(void);//done 
-    void Envoyer_Punition (void); //done
-    void Envoyer_Cadeau (void); //done
+    /**
+     * @brief Attendre le joueur remplir les disques de cadeau et de punition
+     * 
+     * @param None 
+     */
+    void Demande_Remplissage(void); 
+
+    /**
+     * @brief Verifier si le joueur quitte le jeu
+     * 
+     * @return true : joueur quitte le jeu
+     * @return false : joueur reste en jeu
+     */
+    bool Quitter_Jeu (void); 
+
+    /**
+     * @brief Lancer l'écran d'acceuil de jeu IQ
+     * 
+     * @param None
+     * 
+     */
+    void Acceuil_Jeu(void); 
+
+    /**
+     * @brief Lancer le jeu IQ
+     * 
+     * @param None
+     */
+    void Lancement_Jeu(void); 
+
+    /**
+     * @brief Lancer l'écran de réglage de servo
+     * 
+     * @param None
+     */
+    void Reglage_Servo_Jeu(void);
+
+    /**
+     * @brief Touner le disque de punition
+     * 
+     * @param None
+     */
+    void Envoyer_Punition (void); 
+
+    /**
+     * @brief Touner le disque de cadeau
+     * 
+     * @param None
+     */
+    void Envoyer_Cadeau (void); 
+
 
 
 public:
+    /*-----------Public Class ApplicationIQ Functions Definition----------*/
 
-
-    //constructeur de l'application 
+    /**
+     * @brief Construct a new Application IQ object
+     * 
+     */
     ApplicationIQ();
-    void Roulement_Application(void); //done
 
+    /**
+     * @brief 
+     * 
+     */
+    void Roulement_Application(void); 
 
 
 };

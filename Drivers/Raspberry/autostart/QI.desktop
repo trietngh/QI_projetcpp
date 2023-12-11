@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=IQgame
+Exec=/usr/bin/python3 /home/triet/Desktop/projets/QI_projetcpp/Drivers/Raspberry/application_rasp.py

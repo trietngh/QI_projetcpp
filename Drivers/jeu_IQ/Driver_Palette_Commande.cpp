@@ -1,18 +1,12 @@
 #include "Driver_Palette_Commande.h"
-#include "Arduino.h"
-#include "Arduino.h"
+
+#define TEMPS_ATTENTE_REPONSE 3000
 
 
 Palette_Commande::Palette_Commande(){
         pinMode(buttonPinA, INPUT);
-        pinMode(ledPinA, OUTPUT);
         pinMode(buttonPinB, INPUT);
-        pinMode(ledPinB, OUTPUT);
         pinMode(buttonPinC, INPUT);
-        pinMode(ledPinC, OUTPUT);
-        digitalWrite(ledPinA, LOW);
-        digitalWrite(ledPinB, LOW);
-        digitalWrite(ledPinC, LOW);
 }
 
 char Palette_Commande::Recevoir_Reponse(int waiting_time){
@@ -30,23 +24,14 @@ char Palette_Commande::Recevoir_Reponse(int waiting_time){
         readingC = digitalRead(buttonPinC);        
         if (readingA == LOW) 
         {  //button A is pressed
-            digitalWrite(ledPinA, HIGH);
-            delay(500);
-            digitalWrite(ledPinA, LOW);
             return 'A';
         } 
         else if (readingB == LOW) 
         {  //button B is pressed
-            digitalWrite(ledPinB, HIGH);
-            delay(500);
-            digitalWrite(ledPinB, LOW);
             return 'B';
         } 
         else if (readingC == LOW) 
         {  //button C is pressed
-            digitalWrite(ledPinC, HIGH);
-            delay(500);
-            digitalWrite(ledPinC, LOW);
             return 'C';
         }
         current_time = millis();
@@ -57,16 +42,35 @@ char Palette_Commande::Recevoir_Reponse(int waiting_time){
 }
 
 
-void Palette_Commande::Attendre_Demarrage(){
+char Palette_Commande::Recevoir_Reponse(){
+    int readingA; 
+    int readingB; 
+    int readingC; 
+
     do {
+        readingA = digitalRead(buttonPinA);
+        readingB = digitalRead(buttonPinB);
+        readingC = digitalRead(buttonPinC);        
+        if (readingA == LOW) 
+        {  //button A is pressed
+            return 'A';
+        } 
+        else if (readingB == LOW) 
+        {  //button B is pressed
+            return 'B';
+        } 
+        else if (readingC == LOW) 
+        {  //button C is pressed
+            return 'C';
+        }
         yield();
-    } while ( Palette_Commande::Recevoir_Reponse(3000) != 'A');
+    } while (readingA == HIGH && readingB == HIGH && readingC == HIGH);
+    return 'F';
+
 }
 
-void Palette_Commande::Attendre_Remplissage_Cadeau(){
+
+void Palette_Commande::Attendre_Bouton(char bouton){
     do {
-        yield();
-    } while ( Palette_Commande::Recevoir_Reponse(3000) != 'B');
-
-
+    } while ( Palette_Commande::Recevoir_Reponse() != bouton);
 }

@@ -14,6 +14,8 @@
 
 /*-----------Include-------------*/
 #include "rgb_lcd.h"
+#include <Arduino.h>
+
 
 using namespace std;
 
@@ -38,6 +40,8 @@ using namespace std;
 #define LCD_COLONNE_15 14
 #define LCD_COLONNE_16 15
 
+
+#define MESSAGE_BLANC "                "
 /*-----------Exported Class----------*/
 class Ecran{
     private:
@@ -60,12 +64,8 @@ class Ecran{
          */
         void Afficher_Message(const String message, int ligneLCD);
 
-        /**
-         * @brief Lancer l'horloge
-         * @param TempsAttente          Temps pour attendre en miliseconde
-         */
+        void Effacer_Ecran(void);
 
-        void Lancer_horloge(int TempsAttente);
 };
 
 #endif

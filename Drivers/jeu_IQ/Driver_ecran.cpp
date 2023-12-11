@@ -58,7 +58,7 @@ void Ecran::Afficher_Message(const String message, int ligneLCD){
 
     if (nb_deplacement > 0)
     {
-        for(int i = 0; i < nb_deplacement; i++)
+        for(int i = 0; i <= nb_deplacement; i++)
         {
             lcd.setCursor(LCD_COLONNE_1, ligneLCD);
             for (int iter = avance; iter < int(message.length() - nb_deplacement + avance); iter++) {
@@ -76,11 +76,7 @@ void Ecran::Afficher_Message(const String message, int ligneLCD){
 
 }
 
-void Ecran::Lancer_horloge(int TempsAttente){
-    int TempsRestant = TempsAttente/1000;
-    for(int i = 0; i < TempsAttente/1000; i++){
-        Ecran::Afficher_Message(String(TempsRestant),2);
-        delay(1000);
-        TempsRestant--;
-    }
+
+void Ecran::Effacer_Ecran(void){
+    lcd.clear();
 }

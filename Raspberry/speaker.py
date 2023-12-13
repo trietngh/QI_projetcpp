@@ -4,6 +4,8 @@ MESSAGE_FELICITATION = "102"
 DOMMAGE = "103"
 MERCI = "104"
 
+# Play question and sound effet (Unable to interrupt, play until end)
+
 def playSound(sound):
 	if sound == DOMMAGE :
 		pygame.mixer.music.load("/home/triet/Desktop/projets/QI_projetcpp/Drivers/Raspberry/sound/Dommage.mp3")
@@ -30,13 +32,14 @@ def playSound(sound):
 			continue
 		pygame.mixer.music.stop()
 
+# Play background music (Interrupt possible)
 def playMusic():
 	pygame.mixer.music.load("/home/triet/Desktop/projets/QI_projetcpp/Drivers/Raspberry/sound/Music.mp3")
 	pygame.mixer.music.play()
-
+# Stop background music
 def stopMusic():
 	pygame.mixer.music.stop()
-	
+# Play chronometer sound (Interrupt possible)
 def playChronoSound():
 	pygame.mixer.music.load("/home/triet/Desktop/projets/QI_projetcpp/Drivers/Raspberry/sound/Chrono.mp3")
 	pygame.mixer.music.play()
